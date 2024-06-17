@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -20,6 +21,55 @@ class UserController extends Controller
         return view('user.show', compact('user'));
     }
 
+    public function updateProfilePicture(Request $request){
+        $user = Auth::user();
+
+        // $request->validate([
+        //     'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // ]);
+
+        // if($request->hasFile('image')){
+        //     if($user->image_path) {
+        //         Storage::disk('public')->delete($user->image_path);
+        //     }
+
+        //     $path = $request->file('image')->store('profile_image', 'public');
+        //     $user->image_path = $path;
+        //     $user->save();
+
+        //     return redirect()->route('profile.show')->with('success', 'Profile picture updated successfully');
+        // }
+        // return redirect()->route('profile.show')->with('error', 'Failed to update profile pictures')->withInput();
+        if (!$user) {
+            return redirect()->route('login')->with('error', 'Please login to access this page.');
+        }
+
+        try {
+            $validatedData = $request->validate([
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            ]);
+
+            if ($request->hasFile('image')) {
+                // Delete the old image if exists
+                if ($user->image_path) {
+                    Storage::disk('public')->delete($user->image_path);
+                }
+
+                // Store the new image
+                $path = $request->file('image')->store('profile_images', 'public');
+                $user->image_path = $path;
+                $user->save();
+
+                return redirect()->route('profile.show')->with('success', 'Profile picture updated successfully.');
+            }
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to update profile picture.')->withInput();
+        }
+    }
+
     public function updateUserDetails(Request $request)
     {
         $user = Auth::user();
@@ -27,8 +77,6 @@ class UserController extends Controller
         if (!$user) {
             return redirect()->route('login')->with('error', 'Please login to access this page.');
         }
-
-        Log::info('Update user details request data:', $request->all());
 
         try {
             $validatedData = $request->validate([
@@ -40,17 +88,22 @@ class UserController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
             ]);
 
-            Log::info('Validation passed', $validatedData);
-
-            Log::info('Before update:', $user->toArray());
-
             if ($request->hasFile('image')) {
-                // Delete the old image if exists
+                // Debugging: Log the uploaded file details
+                Log::info('Image uploaded:', ['file' => $request->file('image')]);
+    
+                // Delete the old image if exists   
                 if ($user->image_path) {
                     Storage::disk('public')->delete($user->image_path);
+                    Log::info('Old image deleted:', ['path' => $user->image_path]);
                 }
+    
+                // Store the new image
                 $path = $request->file('image')->store('profile_images', 'public');
                 $user->image_path = $path;
+    
+                // Debugging: Log the new image path
+                Log::info('New image stored:', ['path' => $path]);
             }
 
             $user->update([
@@ -59,12 +112,11 @@ class UserController extends Controller
                 'sex' => $request->sex,
                 'height' => $request->height,
                 'weight' => $request->weight,
+                'image_path' => $user->image_path, 
             ]);
 
-            Log::info('After update:', $user->toArray());
-
-            Log::info('User updated successfully');
-
+            Log::info('User details updated:', ['user' => $user]);
+            
             return redirect()->route('user.show')->with('success', 'User details updated successfully.');
         } catch (\Illuminate\Validation\ValidationException $e) {
             Log::error('Validation failed:', $e->errors());
@@ -83,7 +135,6 @@ class UserController extends Controller
             return redirect()->route('login')->with('error', 'Please login to access this page.');
         }
 
-        Log::info('Update account details request data:', $request->all());
 
         try {
             $validatedData = $request->validate([
@@ -93,20 +144,12 @@ class UserController extends Controller
                 'phone' => 'required|string|max:15',
             ]);
 
-            Log::info('Validation passed', $validatedData);
-
-            Log::info('Before update:', $user->toArray());
-
             $user->update([
                 'username' => $request->username,
                 'email' => $request->email,
                 'password' => $request->password ? bcrypt($request->password) : $user->password,
                 'phone' => $request->phone,
             ]);
-
-            Log::info('After update:', $user->toArray());
-            
-            Log::info('Account updated successfully');
 
             return redirect()->route('user.show')->with('success', 'Account details updated successfully.');
         } catch (\Illuminate\Validation\ValidationException $e) {

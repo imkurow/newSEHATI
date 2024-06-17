@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/user', [UserController::class, 'show'])->name('user.show');
     Route::post('/user/update/details', [UserController::class, 'updateUserDetails'])->name('user.update.details');
     Route::post('/user/update/account', [UserController::class, 'updateAccountDetails'])->name('user.update.account');
+    Route::post('/user/update/picture', [UserController::class, 'updateProfilePicture'])->name('user.update.picture');
 });
 
 // article
