@@ -12,13 +12,17 @@
     <div class="container mt-5">
         <div class="row align-items-center">
             <div class="col-md-2">
-                <img src="{{ Storage::url($user->image_path) }}" alt="Profile Picture" class="img-fluid" id="profile-picture">
+                <img src="{{ Storage::url($user->image_path) }}" alt="Profile Picture" class="img-fluid"
+                    id="profile-picture">
             </div>
             <div class="col-md-6">
                 <h1>Hi, {{ $user->name }}</h1>
             </div>
             <div class="col-md-2 text-md-right">
-                <a href="#" class="btn btn-primary">Sign Out</a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="btn btn-primary">Sign Out</button>
+                </form>
             </div>
         </div>
 
@@ -34,7 +38,8 @@
             </div>
         @endif
 
-        <div class="modal fade" id="profilePictureModal" tabindex="-1" role="dialog" aria-labelledby="profilePictureModalLabel" aria-hidden="true">
+        <div class="modal fade" id="profilePictureModal" tabindex="-1" role="dialog"
+            aria-labelledby="profilePictureModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -48,8 +53,10 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="image">Choose a new profile picture</label>
-                                <input type="file" class="form-control-file" id="image" name="image" accept="image/*" onchange="previewImage(event)">
-                                <img id="preview" src="#" alt="Image Preview" class="img-fluid mt-2" style="display: none; max-height: 200px;">
+                                <input type="file" class="form-control-file" id="image" name="image"
+                                    accept="image/*" onchange="previewImage(event)">
+                                <img id="preview" src="#" alt="Image Preview" class="img-fluid mt-2"
+                                    style="display: none; max-height: 200px;">
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -73,7 +80,8 @@
                         <p><strong>Gender:</strong> {{ $user->sex }}</p>
                         <p><strong>Weight:</strong> {{ $user->weight }}</p>
                         <p><strong>Height:</strong> {{ $user->height }}</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModal">Edit</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#editUserModal">Edit</button>
                     </div>
                 </div>
             </div>
@@ -88,7 +96,8 @@
                         <p><strong>Email:</strong> {{ $user->email }}</p>
                         <p><strong>Password:</strong> {{ $user->password }}</p>
                         <p><strong>Phone:</strong> {{ $user->phone }}</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editAccountModal">Edit</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#editAccountModal">Edit</button>
                     </div>
                 </div>
             </div>
@@ -96,7 +105,8 @@
     </div>
 
     <!-- Edit User Modal -->
-    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -110,28 +120,34 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="name">Full name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
+                            <input type="text" class="form-control" id="name" name="name"
+                                value="{{ $user->name }}" required>
                         </div>
                         <div class="form-group">
                             <label for="dob">Date of Birth</label>
-                            <input type="date" class="form-control" id="dob" name="dob" value="{{ $user->dob }}" required>
+                            <input type="date" class="form-control" id="dob" name="dob"
+                                value="{{ $user->dob }}" required>
                         </div>
                         <div class="form-group">
                             <label for="sex">Gender</label>
                             <div>
-                                <input type="radio" id="male" name="sex" value="Male" {{ $user->sex == 'Male' ? 'checked' : '' }}>
+                                <input type="radio" id="male" name="sex" value="Male"
+                                    {{ $user->sex == 'Male' ? 'checked' : '' }}>
                                 <label for="male">Male</label>
-                                <input type="radio" id="female" name="sex" value="Female" {{ $user->sex == 'Female' ? 'checked' : '' }}>
+                                <input type="radio" id="female" name="sex" value="Female"
+                                    {{ $user->sex == 'Female' ? 'checked' : '' }}>
                                 <label for="female">Female</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="weight">Weight</label>
-                            <input type="number" class="form-control" id="weight" name="weight" value="{{ $user->weight }}" required>
+                            <input type="number" class="form-control" id="weight" name="weight"
+                                value="{{ $user->weight }}" required>
                         </div>
                         <div class="form-group">
                             <label for="height">Height</label>
-                            <input type="number" class="form-control" id="height" name="height" value="{{ $user->height }}" required>
+                            <input type="number" class="form-control" id="height" name="height"
+                                value="{{ $user->height }}" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -144,7 +160,8 @@
     </div>
 
     <!-- Edit Account Modal -->
-    <div class="modal fade" id="editAccountModal" tabindex="-1" role="dialog" aria-labelledby="editAccountModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editAccountModal" tabindex="-1" role="dialog"
+        aria-labelledby="editAccountModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -158,11 +175,13 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" value="{{ $user->username }}" required>
+                            <input type="text" class="form-control" id="username" name="username"
+                                value="{{ $user->username }}" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ $user->email }}" required>
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="{{ $user->email }}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
@@ -170,7 +189,8 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" name="phone" value="{{ $user->phone }}" required>
+                            <input type="text" class="form-control" id="phone" name="phone"
+                                value="{{ $user->phone }}" required>
                         </div>
                     </div>
                     <div class="modal-footer">
