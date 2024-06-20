@@ -19,17 +19,24 @@
             background: dodgerblue;
         }
         header {
-            background: #fff;
+            background: #FFFBFA;
             width: 100%;
             height: 70px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 0 50px;
+            position: fixed;
         }
+
+        
         header .logo {
-            font-size: 30px;
-            text-transform: uppercase;
+            /* background-image: url(img/Logo.jpg); */
+            background-position: center;
+            background-size:10%;
+            height: 4vh;
+            /* font-size: 30px;
+            text-transform: uppercase; */
         }
 
         header nav{
@@ -40,7 +47,9 @@
         }
         header nav ul li a {
             display: inline-block;
-            color: #000;
+            font-weight: 500;
+            font-size: 15px;
+            color: #00BD9D;
             padding: 5px 0;
             margin: 0 10px;
             border: 3px solid transparent;
@@ -48,8 +57,29 @@
         }
         header nav ul li a:hover,
         header nav ul li a.active {
-            border-bottom-color: dodgerblue;
+            color: black;
         }
+
+        .profile button {
+            width: 100px;
+            height: 40px;
+            border-radius: 100px;
+            background-color: #E8FBF7;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            color: #262522;
+            border-color: #012622;
+            border-style: solid;
+            border-width: 1.2px;
+            cursor: pointer;
+        }
+
+        .profile button:hover {
+            background-color: #A8ECE1;
+            transition: .2s;
+        }
+
         .hamburger {
             cursor: pointer;
             display: none;
@@ -93,7 +123,9 @@
 </head>
 <body>
     <header>
-        <div class="logo">SEHATI</div>
+        <div class="logo">
+            <img src="img/Logo2.svg" alt="">
+        </div>
         <div class="nav-container">
             <input type="checkbox" id="nav_check" hidden>
             <nav>
@@ -107,8 +139,14 @@
                     <li>
                         <a href="">Consultation</a>
                     </li>
+                    <li>
+                        <a href="">Stress Test</a>
+                    </li>
                 </ul>
             </nav>
+        </div>
+        <div class="profile">
+            <button>Sign in</button>
         </div>
         <label for="nav_check" class="hamburger">
             <div></div>
