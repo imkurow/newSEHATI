@@ -211,13 +211,13 @@
         display: flex;
         color: var(--text-color);
         font-weight:500;
-        padding: 30px 60px;
+        padding: 50px 70px;
         justify-content: space-between;
         align-items: center;
     }
         
     .footer img{
-        width: 15%;
+        width: 20%;
     }
 
 </style>
