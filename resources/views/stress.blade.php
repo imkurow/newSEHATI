@@ -46,12 +46,12 @@
         text-align: center;
         color: var(--bg-color);
     }
-    
+
     .banner-text .text1 {
         font-size: 35px;
         font-weight: 600;
     }
-    
+
     .banner-text .text2 {
         padding-top: 7%;
         font-size: 20px;
@@ -100,7 +100,7 @@
         background-color: #8BD7D2;
     }
 
-    .footer {   
+    .footer {
         display: flex;
         color: var(--text-color);
         font-weight:500;
@@ -108,7 +108,7 @@
         justify-content: space-between;
         align-items: center;
     }
-        
+
     .footer img{
         width: 15%;
     }
@@ -130,7 +130,7 @@
             </div>
         </div>
     </div>
-   
+
     <footer>
         <div class="footer">
             <img src="img/Logo2.svg" alt="">
