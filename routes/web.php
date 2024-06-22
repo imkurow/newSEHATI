@@ -24,22 +24,16 @@ Route::get('/Stresspage', function () {
     return view('stress');
 })->name('stresspage');
 
+Route::get('/Testpage', function () {
+    return view('test');
+})->name('questionaire');
+
 
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
 Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
 Route::get('/registration', [AuthManager::class, 'registration'])->name('registration');
 Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('registration.post');
-<<<<<<< HEAD
-
-Route::post('/logout', function () {
-    Auth::logout();
-    request()->session()->invalidate();
-    request()->session()->regenerateToken();
-    return redirect('/login');
-})->name('logout');
-=======
 Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
->>>>>>> caaf967bf46685913aaca7bc5fcaae84bec75270
 
 // update
 Route::middleware(['auth'])->group(function () {

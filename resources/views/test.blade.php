@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'StressTest')
+@section('title', 'Stress Test')
 @section('content')
 
 
@@ -22,9 +22,9 @@
         /* background-color: var(--main-color); */
     }
 
-    .banner{
+    .q-session {
         width: 100%;
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0.23%, #262522 98.64%), url(img/stress3.jpg);
+        background-color: var(--bg-color);
         height: 100vh;
         background-size: cover;
         background-position: 69%;
@@ -33,27 +33,21 @@
         /* position: fixed; */
     }
 
-    .banner-text {
+    .question1 {
         display: grid;
         justify-content: center;
         align-items: center;
     }
 
-    .banner-text p{
+    .question1 p{
         border-top: 30px;
         font-size: 40px;
         font-family: "Plus Jakarta Sans", sans-serif;
         text-align: center;
-        color: var(--bg-color);
+        color: var(--text-color);
     }
 
-    .banner-text .text1 {
-        font-size: 35px;
-        font-weight: 600;
-    }
-
-    .banner-text .text2 {
-        padding-top: 7%;
+    .question1 .text1 {
         font-size: 20px;
         font-weight: 400;
     }
@@ -64,35 +58,50 @@
         object-fit: cover;
     }
 
-    .info-button {
-        padding-top: 40px;
-        justify-self: center;
-        align-self: center;
+    .options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 38px;
+        margin: 30px 0;
     }
 
-    .info-button button {
-        width: 120px;
-        height: 40px;
-        border-radius: 15px;
-        background-color: var(--main-color);
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        font-size: 15px;
-        color: var(--bg-color);
-        border-style: none;
-        border-width: 2px;
+    .option {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 2px solid;
         cursor: pointer;
-        transition: .2s;
     }
 
-    .info-button button:hover {
-        background-color: #07DBB7;
-        box-shadow: #07DBB7
-        color: var(--bg-color);
-        box-shadow: 0px 0px 15px 0px #07DBB7;
-        /* width: 115px;
-        height: 45px; */
-        transition: .2s;
+    .option.red1 {
+        border-color: #f44336;
+        width: 45px;
+        height: 45px;
+    }
+
+    .option.red2 {
+        border-color: #f44336;
+    }
+
+    .option.yellow3 {
+        border-color: #ffeb3b;
+        width: 32px;
+        height: 32px;
+    }
+
+    .option.green4 {
+        border-color: #4caf50;
+    }
+
+    .option.green5 {
+        border-color: #4caf50;
+        width: 45px;
+        height: 45px;
+    }
+
+    .option.selected {
+        background-color: grey;
     }
 
     footer {
@@ -116,22 +125,21 @@
 </style>
 
 <div class="container">
-    <div class="banner">
-        {{-- <img src="img/stress2.jpg" alt="" class="banner-img"> --}}
-        <div class="banner-text">
+    <div class="q-session">
+        <div class="question1">
             <p class="text1">
-                How you feelin right now?
+                Seberapa sering Anda merasa cemas atau gelisah dalam seminggu terakhir?
             </p>
-            <p class="text2">
-                let us know if we can help
-            </p>
-            <div class="info-button">
-                <a href="{{route('questionaire')}}">
-                    <button>take a test</button>
-                </a>
+            <div class="options">
+                <div class="option red1" data-value="1"></div>
+                <div class="option red2" data-value="2"></div>
+                <div class="option yellow3" data-value="3"></div>
+                <div class="option green4" data-value="4"></div>
+                <div class="option green5" data-value="5"></div>
             </div>
         </div>
     </div>
+
 
     <footer>
         <div class="footer">
