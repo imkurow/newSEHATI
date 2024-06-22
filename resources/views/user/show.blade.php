@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container mt-5">    
         <div class="row align-items-center">
             <div class="col-md-2">
                 <img src="{{ Storage::url($user->image_path) }}" alt="Profile Picture" class="img-fluid"
