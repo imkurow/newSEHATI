@@ -15,6 +15,9 @@ class AuthManager extends Controller
     function registration(){
         return view('registration');
     }
+    function stressTest(){
+        return view('/questionaire/stressTest');
+    }
 
     function loginPost(Request $request){
         $request->validate([
@@ -58,4 +61,3 @@ class AuthManager extends Controller
         return redirect(route('login'));
     }
 }
-    
