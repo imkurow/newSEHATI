@@ -16,7 +16,7 @@ class AuthManager extends Controller
         return view('registration');
     }
     function stressTest(){
-        return view('/questionaire/stressTest');
+        return view('stressTest');
     }
 
     function loginPost(Request $request){

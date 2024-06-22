@@ -131,13 +131,13 @@
             <nav>
                 <ul>
                     <li>
-                        <a href="" class="active">Home</a>
+                        <a href="{{route('home')}}">Home</a>
                     </li>
                     <li>
-                        <a href="">Article</a>
+                        <a href="{{route('articles.index')}}">Article</a>
                     </li>
                     <li>
-                        <a href="">Stress Test</a>
+                        <a href="{{route('stresspage')}}">Stress Test</a>
                     </li>
                 </ul>
             </nav>

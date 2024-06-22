@@ -28,7 +28,7 @@
         height: 65vh;
         background-size: cover;
         background-position: 69%;
-        
+
         /* position: fixed; */
     }
 
@@ -58,7 +58,7 @@
         display: grid;
         height: 80vh;
     }
-    
+
     .articles .title-article{
         display: flex;
         justify-content: flex-end;
@@ -131,7 +131,7 @@
         height: 80vh;
         overflow: hidden;
     }
-    
+
     .stress-test .title-stress{
         display: flex;
         justify-content: flex-start;
@@ -163,19 +163,19 @@
         row-gap: 0;
         /* justify-self: end; */
     }
-    
+
     .stress-div p{
         color: var(--text-color);
         font-size: 18px;
         text-align: right;
     }
-    
+
     .stress-div .subtitle-stress{
         font-size: 30px;
         font-weight: bold;
         padding-bottom: 20px;
     }
-    
+
     .info-button {
         padding-top: 40px;
         justify-self: end;
@@ -207,7 +207,7 @@
         background-color: #8BD7D2;
     }
 
-    .footer {   
+    .footer {
         display: flex;
         color: var(--text-color);
         font-weight:500;
@@ -215,7 +215,7 @@
         justify-content: space-between;
         align-items: center;
     }
-        
+
     .footer img{
         width: 20%;
     }
@@ -243,15 +243,17 @@
                     Stress is a normal psychological and physical reaction to the demands of life. A small amount of stress can be good, motivating you to perform well. But many challenges daily, such as sitting in traffic, meeting deadlines and paying bills, can push you beyond your ability to cope.
                 </p>
                 <div class="info-button">
-                    <button>more</button>
+                    <a href="{{route('articles.index')}}">
+                        <button id="articleButton">
+                            more
+                        </button>
+                    </a>
+
                 </div>
             </div>
         </div>
     </div>
     <div class="stress-test">
-        <div class="title-stress">
-            <p>Stress Test</p>
-        </div>
         <div class="stress-session">
             <div class="stress-div">
                 <p class="subtitle-stress">How stress are you?</p>
@@ -259,7 +261,10 @@
                     Stress is a normal psychological and physical reaction to the demands of life. A small amount of stress can be good, motivating you to perform well. But many challenges daily, such as sitting in traffic, meeting deadlines and paying bills, can push you beyond your ability to cope.
                 </p>
                 <div class="info-button">
-                    <button>take a test</button>
+                    <a href="{{route('stresspage')}}">
+
+                        <button>take a test</button>
+                    </a>
                 </div>
             </div>
             <img src="img/stress4.jpg" alt="">

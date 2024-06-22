@@ -17,7 +17,12 @@
   <body>
     @include('header.header')
     @yield('content')
-
+    <script>
+        var csrfToken = "{{ csrf_token() }}";
+        document.geElementById("articleButton").onclick = function (){
+            window.location.href = "{{route('articles.index')}}";
+        };
+    </script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> --}}
   </body>
 </html>

@@ -1,36 +1,23 @@
-FROM php:7.3-cli-alpine
+# Use an official PHP runtime as a parent image
+FROM php:8.2-apache
 
-# ini adalah variable environtment
-ENV \
-APP_DIR="/app" \
-APP_PORT="8001"
+# Install any required extensions and tools
+RUN docker-php-ext-install pdo pdo_mysql
 
-# untuk memindahkan file/folder ke direktori yang di inginkan pada docker
-COPY / $APP_DIR
-COPY .env.example $APP_DIR/.env
+# Copy application files to the container
+COPY . /var/www/html
 
-# menginstall kebutuhan yang ingin digunakan
-RUN apk add --update \
-    curl \
-    php \
-    php-opcache\
-    php-openssl \
-    php-pdo \
-    php-json \
-    php-phar \
-    php-dom \
-    && rm -rf /var/cache/apk/*
+# Set working directory
+WORKDIR /var/www/html
 
-# install composer
-RUN curl -sS https://getcomposer.org/installer | php -- \
-    --install-dir=/usr/bin --filename=composer
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# run composer
-RUN cd $APP_DIR && composer update
-RUN cd $APP_DIR && php artisan key:generate
+# Ensure composer dependencies are installed
+RUN composer install
 
-# entrypoint
-WORKDIR $APP_DIR
-CMD php artisn serve --host=0.0.0.0 --port=$APP_PORT
+# Expose port 80
+EXPOSE 80
 
-EXPOSE $APP_PORT
+# Start Apache server
+CMD ["apache2-foreground"]

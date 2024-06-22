@@ -23,13 +23,13 @@ Route::get('/Homepage', function () {
 
 Route::get('/Stresspage', function () {
     return view('stress');
-})->name('home');
+})->name('stresspage');
+
 
 Route::get('/login', [AuthManager::class, 'login'])->name('login');
 Route::post('/login', [AuthManager::class, 'loginPost'])->name('login.post');
 Route::get('/registration', [AuthManager::class, 'registration'])->name('registration');
 Route::post('/registration', [AuthManager::class, 'registrationPost'])->name('registration.post');
-// Route::get('/logout', [AuthManager::class, 'logout'])->name('logout');
 
 Route::post('/logout', function () {
     Auth::logout();
