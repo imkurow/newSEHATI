@@ -262,7 +262,6 @@
                 </p>
                 <div class="info-button">
                     <a href="{{route('stresspage')}}">
-
                         <button>take a test</button>
                     </a>
                 </div>
