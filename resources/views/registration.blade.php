@@ -26,7 +26,7 @@
         display: grid;
         height: 1vh;
     }
-    
+
     .logo-class img {
         width: 20%;
         justify-self: center;
@@ -149,7 +149,7 @@
         text-align: center;
         color: red;
     }
-    
+
     .errormsg .alert-alert-success{
         color: green;
     }

@@ -29,7 +29,7 @@
             position: fixed;
         }
 
-        
+
         header .logo {
             /* background-image: url(img/Logo.jpg); */
             background-position: center;
@@ -135,9 +135,6 @@
                     </li>
                     <li>
                         <a href="">Article</a>
-                    </li>
-                    <li>
-                        <a href="">Consultation</a>
                     </li>
                     <li>
                         <a href="">Stress Test</a>
